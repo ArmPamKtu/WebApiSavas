@@ -53,7 +53,6 @@ namespace HugDb.Repositories
             _context.SaveChanges();
         }
 
-     
 
         public void AddUser(User user)
         {
