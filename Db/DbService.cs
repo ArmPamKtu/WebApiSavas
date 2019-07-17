@@ -11,7 +11,6 @@ namespace Db
         private static List<Hug> _hugs = new List<Hug>();
 
         /*private readonly IMyLogger _logger;
-
         public DbService(IMyLogger logger)
         {
             _logger = logger;

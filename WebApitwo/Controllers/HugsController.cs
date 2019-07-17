@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Infastructure;
 using WebApitwo.Model;
 using Infrastructure;
+using HugDb.Repositories;
 
 namespace WebApitwo.Controllers
 {
@@ -15,22 +16,24 @@ namespace WebApitwo.Controllers
     public class HugsController : ControllerBase //jeigu noretume view, tai butu tiesiog controller
     {
         private readonly DbService _dbService = new DbService();
+        private UserRepository _repository;
         /*private readonly DbService _dbService;
         readonly private IMyLogger _logger;
         readonly private IMyTime _time;
-
-        public HugsController(DbService service)
+        */
+        public HugsController(UserRepository repository)
         {
-            _time = new MyTime();
-            _dbService = new DbService(_logger);
-            _logger = new DebugLogger(_time);
-        }*/
+            _repository = repository;
+            //_time = new MyTime();
+            //_dbService = new DbService(_logger);
+            //_logger = new DebugLogger(_time);
+        }
 
 
         [HttpGet]//jeigu nenurodom [get/post] tai musu metodas turi taip vadinits get/post
         public ActionResult<IEnumerable<HugModel>> Get() //actionResult kaip wraperis papildomos info duoda
         {
-            
+           
            // _logger.Log("Get Started");
 
             var hugs = _dbService.GetHugs();
