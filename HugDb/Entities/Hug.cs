@@ -8,9 +8,11 @@ namespace HugDb.Entities
     {
         public int Id { get; set; }
         public int Value { get; set; }
-        public User FromUserId{ get; set; }
-        public User ToUserId{ get; set; }
+        public User FromUser{ get; set; }   
+        public User ToUser{ get; set; }
         public DateTime Created { get; set; }
         public bool Used { get; set; }
+
+        public Committee Committee { get; set; }
     }
 }

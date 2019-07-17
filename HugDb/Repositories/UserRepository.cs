@@ -1,4 +1,5 @@
 ﻿using HugDb.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,13 @@ namespace HugDb.Repositories
         public User GetUser(int id)
         {
             return _context.Users.Single(x => x.Id == id);
+        }
+
+        public User GetUserWithHugs(int id)
+        {
+            //grazina hugs lista, kur sutampa su user id
+            return _context.Users.Include(navigationPropertyPath: x =>x.Hugs)
+                .Single(x => x.Id == id);
         }
 
         public List<User> GetAllUsers()

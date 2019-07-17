@@ -4,16 +4,11 @@ using System.Text;
 
 namespace HugDb.Entities
 {
-    public class User
+    public class Committee
     {
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string SocEmail { get; set; }
-        public DateTime Created { get; set; }
-
+        public string Name { get; set; }
         public List<UserCommittee> UserCommittees { get; set; }
         public List<Hug> Hugs { get; set; }
-
     }
 }
