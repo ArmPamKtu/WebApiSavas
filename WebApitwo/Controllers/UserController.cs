@@ -18,26 +18,57 @@ namespace WebApitwo.Controllers
     {
        
         private UserRepository _repository;
-        /*private readonly DbService _dbService;
-        readonly private IMyLogger _logger;
-        readonly private IMyTime _time;
-        */
         public UserController(UserRepository repository)
         {
             _repository = repository;
-            //_time = new MyTime();
-            //_dbService = new DbService(_logger);
-            //_logger = new DebugLogger(_time);
         }
 
-
         [HttpGet]//jeigu nenurodom [get/post] tai musu metodas turi taip vadinits get/post
-        public ActionResult<IEnumerable<User>> Get() //actionResult kaip wraperis papildomos info duoda
+        public ActionResult<IEnumerable<UserModel>> Get() //actionResult kaip wraperis papildomos info duoda
         {
 
             // _logger.Log("Get Started");
             var users = _repository.GetAllUsers();
-            return users;
+            var result = users.Select(x => new UserModel
+            {
+                FirstName = x.FirstName,
+                Lastname = x.LastName,
+                Created = x.Created,
+                Id = x.Id,
+                SocEmail = x.SocEmail,
+            }).ToList();
+            
+            return result;
+        }
+
+        public ActionResult<string> Delete(long id)
+        {
+            var userToDelete = _repository.GetUser((int)id);
+            _repository.Delete(userToDelete);
+
+            return ($"User: {id} deleted ");
+        }
+
+        [HttpPost]
+        public string Post([FromBody]UserModel model)
+        {
+            var users = _repository.GetAllUsers();
+            int exist = users.Where(x => x.Id == model.Id).Count();
+
+            if (exist == 0)
+            {
+
+                User newUser = new User();
+                newUser.FirstName = model.FirstName;
+                newUser.LastName = model.Lastname;
+                newUser.SocEmail = model.SocEmail;
+                newUser.Created = model.Created;
+
+                _repository.AddUser(newUser);
+                return "User added";
+            }
+            else
+                return "User exists already";
         }
 
     }
