@@ -21,8 +21,10 @@ namespace WebApitwo
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
+        readonly string MyAllowSpecificOrigins = "http://localhost:3000";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -32,6 +34,17 @@ namespace WebApitwo
             services.AddDbContext<HugDbContext>(options =>
                options.UseSqlServer(Configuration.GetSection("ConnectionHug").Value));
             services.AddScoped<UserRepository>();
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000").AllowAnyHeader();
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,8 +60,11 @@ namespace WebApitwo
                 app.UseHsts();
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.UseHttpsRedirection();
             app.UseMvc();
+           
         }
     }
 }
