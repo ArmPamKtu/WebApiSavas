@@ -10,9 +10,10 @@ namespace HugDb.Entities
         public int Id { get; set; }
         public int Value { get; set; }
 
-        public int FromUserId { get; set; }
+        public int? FromUserId { get; set; }
 
-        public int ToUserId { get; set; }
+        public int? ToUserId { get; set; }
+
         [ForeignKey("FromUserId")]
         public User FromUser{ get; set; }
         [ForeignKey("ToUserId")]

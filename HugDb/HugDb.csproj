@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20190717075420_Created field added to User.Designer.cs" />
     <Compile Remove="Migrations\20190717105421_Added Many to Many CommiteeUser.cs" />
     <Compile Remove="Migrations\20190717105421_Added Many to Many CommiteeUser.Designer.cs" />
+    <Compile Remove="Migrations\20190717110003_Added Many to Many CommiteeUserv2.cs" />
+    <Compile Remove="Migrations\20190717110003_Added Many to Many CommiteeUserv2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

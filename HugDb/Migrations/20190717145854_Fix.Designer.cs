@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HugDb.Migrations
 {
     [DbContext(typeof(HugDbContext))]
-    [Migration("20190717110003_Added Many to Many CommiteeUserv2")]
-    partial class AddedManytoManyCommiteeUserv2
+    [Migration("20190717145854_Fix")]
+    partial class Fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

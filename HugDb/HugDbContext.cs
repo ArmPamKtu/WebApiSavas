@@ -10,6 +10,8 @@ namespace HugDb
         public DbSet<Hug> Hugs { get; set; }
         public DbSet<Committee> Committees { get; set; }
         public DbSet<UserCommittee> UserCommittees { get; set; }
+        public DbSet<ShopItemType> ShopItemTypes { get; set; }
+
         public HugDbContext(DbContextOptions<HugDbContext> options) : base(options)
         {
              
